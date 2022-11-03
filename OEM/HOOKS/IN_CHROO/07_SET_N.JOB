@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "dpkg -l nvidia-driver"
+dpkg -l |grep nvidia-driver
+if [ $? = 0 ];then
+	echo "OK nvidia-driver !!!"
+	echo "delete nomodeset from /etc/default/grub"
+	sed -i 's/nomodeset//g' /etc/default/grub
+fi
+

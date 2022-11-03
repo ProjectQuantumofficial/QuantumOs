@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "set theme"
+if [ -e /usr/share/plymouth/themes/deepin-ssd-logo ]; then
+        echo "set pltmouth deepin"
+	plymouth-set-default-theme deepin-ssd-logo
+fi

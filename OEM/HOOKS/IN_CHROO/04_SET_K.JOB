@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+#linux-image-5.4.50-amd64-desktop
+#linux-headers-5.4.50-amd64-desktop
+
+#linux-image-5.7.7-amd64-desktop
+#linux-headers-5.4.50-amd64-desktop
+
+sed -e
+
+kernel=`uname -r`
+
+echo $kernel
+if [ "$kernel" = "5.15.45-amd64-desktop" ];then
+	echo "Uninstall kernel ..."
+	echo $kernel
+	apt purge -y linux-image-5.18.4-amd64-desktop linux-headers-5.18.4-amd64-desktop
+	rm -rf /usr/lib/modules/5.18.4*
+	echo "Uninstall end"
+fi
+
+
+if [ "$kernel" = "5.18.4-amd64-desktop-hwe" ];then
+	echo "Uninstall kernel ..."
+	echo $kernel
+	apt purge -y linux-image-5.15.45-amd64-desktop linux-headers-5.15.45-amd64-desktop 
+        rm -rf /usr/lib/modules/5.15.45*	
+	echo "Uninstall end"
+fi
+
