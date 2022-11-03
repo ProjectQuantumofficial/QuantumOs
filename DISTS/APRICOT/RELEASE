@@ -1,0 +1,17 @@
+Origin: isobuild
+Codename: apricot
+Date: Wed, 31 Aug 2022 10:58:31 UTC
+Architectures: amd64
+Components: main
+MD5Sum:
+ baf7eb3a3fe7f17c69bbbd382c59cf79 71594 main/binary-amd64/Packages
+ 9cb9682e8a0638fb3ca8e27f32cf8311 17176 main/binary-amd64/Packages.gz
+ 1a1ecd30e9add663975d2b59a3c9cbe6 53 main/binary-amd64/Release
+SHA1:
+ 0159798cb92d49cbd38fc65baed43e98302aee9a 71594 main/binary-amd64/Packages
+ 5dbc04c86e0adbe1ffdc51254b59127105c5b288 17176 main/binary-amd64/Packages.gz
+ 3dd2379f79dbb01bbdfc86efbb9a60e225728235 53 main/binary-amd64/Release
+SHA256:
+ 57fa946d8c1022042b51870e18510b60bb441f5de718f482547386d050965d50 71594 main/binary-amd64/Packages
+ 201272d7fd3b0e9854a4eb435bba9cb1835263630b806218d3b6f057ca2761d1 17176 main/binary-amd64/Packages.gz
+ 85230001f7c85143947b377cd2a1d5e97241bf5cc75dffdf91f7c819ce8f7a6c 53 main/binary-amd64/Release

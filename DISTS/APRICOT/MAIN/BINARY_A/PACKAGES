@@ -1,0 +1,1564 @@
+Package: bbswitch-dkms
+Source: bbswitch
+Version: 0.8.1-10
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 39
+Depends: dkms (>= 2.1.0.0)
+Suggests: bumblebee
+Multi-Arch: foreign
+Homepage: https://github.com/Bumblebee-Project/bbswitch
+Priority: optional
+Section: kernel
+Filename: pool/main/b/bbswitch/bbswitch-dkms_0.8.1-10_amd64.deb
+Size: 13384
+SHA256: 1322866d1e885596db30f9070084a168e84843aa80e04c0b14976a3333c78143
+SHA1: a350f3a81f757a556b172f8194e20d9d178c768c
+MD5sum: 6786cc070ff3ec3812e10bfb59186c83
+Description: Interface for toggling the power on NVIDIA Optimus video cards (dkms)
+ bbswitch is a kernel module which automatically detects the required ACPI
+ calls for two kinds of Optimus laptops. It has been verified to work with
+ "real" Optimus and "legacy" Optimus laptops (at least, that is what the
+ author Lekensteyn calls those).
+ .
+ This package uses DKMS to automatically build the bbswitch kernel module.
+
+Package: bumblebee
+Version: 3.2.1-20
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 199
+Pre-Depends: init-system-helpers (>= 1.54~)
+Depends: bbswitch-dkms | bbswitch-source, lsb-base, xserver-xorg-core (>= 2:1.18), libbsd0 (>= 0.2.0), libc6 (>= 2.28), libglib2.0-0 (>= 2.12.0), libkmod2 (>= 5~), libx11-6
+Recommends: virtualgl | primus
+Suggests: bumblebee-nvidia (= 3.2.1-20)
+Homepage: https://launchpad.net/~bumblebee
+Priority: optional
+Section: utils
+Filename: pool/main/b/bumblebee/bumblebee_3.2.1-20_amd64.deb
+Size: 50084
+SHA256: b0d907a46f839605ca3eced6f079f0bdceca9e45ebfb0493308e47baee26f606
+SHA1: 61a2345094bcb7c2cfa1b4836760b27181b3f3b2
+MD5sum: 76f2170034e7ba7b8b7251256a23f32e
+Description: NVIDIA Optimus support for Linux
+ Bumblebee is an effort to make NVIDIA Optimus enabled laptops work in
+ GNU/Linux systems. These laptops are built in such a way that the NVIDIA
+ graphics card can be used on demand so that battery life is improved and
+ temperature is kept low.
+ .
+ It disables the discrete graphics card if no client is detected, and starts
+ an X server making use of NVIDIA card if requested then let software GL
+ implementations (such as VirtualGL) copy frames to the visible display that
+ runs on the integrated graphics. The ability to use discrete graphics
+ depends on the driver: open source nouveau and proprietary nvidia.
+
+Package: bumblebee-nvidia
+Source: bumblebee
+Version: 3.2.1-20
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 17
+Depends: bumblebee (= 3.2.1-20), glx-alternative-nvidia (>= 0.6.92), nvidia-driver | nvidia-legacy-390xx-driver | nvidia-legacy-340xx-driver | nvidia-legacy-304xx-driver | nvidia-kernel-dkms | nvidia-legacy-390xx-kernel-dkms | nvidia-legacy-340xx-kernel-dkms | nvidia-legacy-304xx-kernel-dkms | nvidia | nvidia-current | nvidia-current-updates | nvidia-driver-binary | nvidia-304 | nvidia-304-updates | nvidia-experimental-304 | nvidia-310 | nvidia-310-updates | nvidia-experimental-310 | nvidia-313 | nvidia-313-updates | nvidia-experimental-313 | nvidia-319 | nvidia-319-updates | nvidia-experimental-319 | nvidia-325 | nvidia-325-updates | nvidia-experimental-325 | nvidia-331 | nvidia-331-updates | nvidia-experimental-331 | nvidia-334 | nvidia-334-updates | nvidia-experimental-334 | nvidia-337 | nvidia-337-updates | nvidia-experimental-337 | nvidia-340 | nvidia-340-updates | nvidia-experimental-340 | nvidia-343 | nvidia-343-updates | nvidia-experimental-343 | nvidia-346 | nvidia-346-updates | nvidia-experimental-346 | nvidia-349 | nvidia-349-updates | nvidia-experimental-349 | nvidia-352 | nvidia-352-updates | nvidia-experimental-352 | nvidia-355 | nvidia-355-updates | nvidia-experimental-355 | nvidia-358 | nvidia-358-updates | nvidia-experimental-358 | nvidia-361 | nvidia-361-updates | nvidia-experimental-361 | nvidia-364 | nvidia-364-updates | nvidia-experimental-364 | nvidia-367 | nvidia-367-updates | nvidia-experimental-367 | nvidia-375 | nvidia-375-updates | nvidia-experimental-375 | nvidia-378 | nvidia-378-updates | nvidia-experimental-378 | nvidia-381 | nvidia-381-updates | nvidia-experimental-381 | nvidia-384 | nvidia-384-updates | nvidia-experimental-384 | nvidia-387 | nvidia-387-updates | nvidia-experimental-387 | nvidia-driver-390 | nvidia-driver-410
+Homepage: https://launchpad.net/~bumblebee
+Priority: optional
+Section: contrib/utils
+Filename: pool/main/b/bumblebee/bumblebee-nvidia_3.2.1-20_amd64.deb
+Size: 5940
+SHA256: 08e27b0e14b65e8136f4c1a574db49b4865e879484b558f4407a3693a7ae62bc
+SHA1: 4a7bd84f887758f1a528f3db5a2bcd22895173ad
+MD5sum: 275bd4c7a13332ea4d713dadb177353b
+Description: NVIDIA Optimus support using the proprietary NVIDIA driver
+ This metapackage ensures that the proprietary NVIDIA driver is installed in a
+ way such that 3D acceleration does not break. It does so by configuring the
+ OpenGL library path to use the Mesa graphics library.
+
+Package: glx-alternative-mesa
+Source: glx-alternatives
+Version: 1.2.0-1-1+eagle
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 32
+Pre-Depends: dpkg (>= 1.17.21)
+Depends: update-glx (= 1.2.0-1-1+eagle)
+Recommends: glx-diversions
+Suggests: libgl1-mesa-glx | libgl1
+Breaks: nvidia-alternative (<< 390.67-3~)
+Multi-Arch: foreign
+Priority: optional
+Section: contrib/libs
+Filename: pool/main/g/glx-alternatives/glx-alternative-mesa_1.2.0-1-1+eagle_amd64.deb
+Size: 4328
+SHA256: acc7cf7c0e2b6afaed1d4b082113ade28eda011d1e9eb9aed09bd0f9c79ffebe
+SHA1: 3fcff9c3461bf0a2ec219630248ada45dd41bbdb
+MD5sum: f350a511ca722e0a90b88fb50efae4f2
+Description: allows the selection of MESA as GLX provider
+ In setups with several GLX providers (e.g. the free MESA implementation and
+ proprietary graphics hardware vendor implementations) this metapackage
+ allows one to switch back to MESA.
+ .
+ Use 'update-glx --config glx' to select an implementation.
+ .
+ This package does not depend on the corresponding MESA libraries.
+ In order to install the MESA libraries, install the libgl1-mesa-glx package
+ instead.
+
+Package: glx-alternative-nvidia
+Source: glx-alternatives
+Version: 1.2.0-1-1+eagle
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 43
+Pre-Depends: dpkg (>= 1.17.21)
+Depends: update-glx (= 1.2.0-1-1+eagle), glx-diversions (= 1.2.0-1-1+eagle), glx-alternative-mesa
+Suggests: nvidia-driver | nvidia-driver-any
+Breaks: bumblebee-nvidia (<< 3.2.1-10~), nvidia-alternative (<< 390.67-3~), nvidia-alternative-legacy-173xx (<< 304), nvidia-alternative-legacy-71xx (<< 304), nvidia-alternative-legacy-96xx (<< 304), nvidia-legacy-304xx-alternative (<< 304.137-7~), nvidia-legacy-304xx-driver (<< 304.137-7~), nvidia-legacy-340xx-alternative (<< 340.93-2~), xserver-xorg-video-nvidia-legacy-304xx (<< 304.137-7~)
+Multi-Arch: foreign
+Priority: optional
+Section: contrib/libs
+Filename: pool/main/g/glx-alternatives/glx-alternative-nvidia_1.2.0-1-1+eagle_amd64.deb
+Size: 5392
+SHA256: 0c59187bc950343e90d3815e5e8be7302e1fb7c797313205ad6d10ab1de5ded7
+SHA1: 04f811934d3eff7cf428ee82ee6d9ee0b842d28a
+MD5sum: 6b255150835ac9560d10f785dce23c41
+Description: allows the selection of NVIDIA as GLX provider
+ In setups with several GLX providers (e.g. the free MESA implementation and
+ proprietary graphics hardware vendor implementations) this metapackage
+ allows one to switch to the non-free NVIDIA driver and libraries.
+ .
+ Use 'update-glx --config glx' to select an implementation.
+ .
+ This package does not depend on the corresponding NVIDIA libraries.
+ In order to install the NVIDIA driver and libraries, install the
+ nvidia-driver package instead.
+
+Package: glx-diversions
+Source: glx-alternatives
+Version: 1.2.0-1-1+eagle
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 34
+Pre-Depends: nvidia-installer-cleanup
+Depends: glx-alternative-mesa (= 1.2.0-1-1+eagle)
+Conflicts: libgl1-mesa-swx11
+Multi-Arch: foreign
+Priority: optional
+Section: contrib/libs
+Filename: pool/main/g/glx-alternatives/glx-diversions_1.2.0-1-1+eagle_amd64.deb
+Size: 6580
+SHA256: 4988c9b00162bc35373cfbec3a9dbdf43b784285ba5a2929b78fcefa6f8b73dc
+SHA1: 43b1b0a024f2f2b276385d2aeabd4ba4cd917d77
+MD5sum: 82103d8db239826ac3f44b55c1ccb591
+Description: prepare for using accelerated GLX implementations from GPU vendors
+ Diverts the free libGL.so implementation (MESA) and the xserver module
+ libglx.so (Xorg), preparing the system for plugging in accelerated
+ implementations from GPU vendors via alternatives, see the
+ glx-alternative-* packages.
+
+Package: grub-efi-amd64
+Source: grub2
+Version: 2.04.25-18
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 159
+Depends: debconf (>= 0.5) | debconf-2.0, grub-common (= 2.04.25-18), grub2-common (= 2.04.25-18), grub-efi-amd64-bin (= 2.04.25-18), ucf
+Conflicts: elilo, grub, grub-coreboot, grub-efi-ia32, grub-ieee1275, grub-legacy, grub-pc, grub-xen
+Replaces: grub, grub-common (<= 1.97~beta2-1), grub-coreboot, grub-efi-ia32, grub-ieee1275, grub-legacy, grub-pc, grub2 (<< 2.04.25-18)
+Multi-Arch: foreign
+Homepage: https://www.gnu.org/software/grub/
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub2/grub-efi-amd64_2.04.25-18_amd64.deb
+Size: 39980
+SHA256: cb036f92550d054b3ae6686c087ca6c7024e850dcff51387c8cc2390ec4b78dd
+SHA1: b069ae4224a4b663e4d16d31b1978ab9b012d4c2
+MD5sum: 98c1883ec76b06d4482c87c70712c3f0
+Description: GRand Unified Bootloader, version 2 (EFI-AMD64 version)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This is a dependency package for a version of GRUB that has been built for
+ use with the EFI-AMD64 architecture, as used by Intel Macs (unless a BIOS
+ interface has been activated).  Installing this package indicates that this
+ version of GRUB should be the active boot loader.
+
+Package: grub-efi-amd64-bin
+Source: grub2
+Version: 2.04.25-18
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 8598
+Depends: grub-common (= 2.04.25-18)
+Recommends: grub-efi-amd64-signed, efibootmgr
+Replaces: grub-common (<= 1.97~beta2-1), grub-efi-amd64 (<< 1.99-1), grub2 (<< 2.04.25-18)
+Multi-Arch: foreign
+Homepage: https://www.gnu.org/software/grub/
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub2/grub-efi-amd64-bin_2.04.25-18_amd64.deb
+Size: 701932
+SHA256: 10e9b289dffc8464b4c91a9eb67acb184470b4b61873e55c173bc2413361e820
+SHA1: cc526ae8262a18bb971eba3ca0a16c7731c0681f
+MD5sum: 129e4724756ef8759df4c032bcba6028
+Description: GRand Unified Bootloader, version 2 (EFI-AMD64 modules)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This package contains GRUB modules that have been built for use with the
+ EFI-AMD64 architecture, as used by Intel Macs (unless a BIOS interface has
+ been activated).  It can be installed in parallel with other flavours, but
+ will not automatically install GRUB as the active boot loader nor
+ automatically update grub.cfg on upgrade unless grub-efi-amd64 is also
+ installed.
+Efi-Vendor: debian
+
+Package: grub-efi-amd64-signed
+Version: 1.67.5+2.04+dde
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 5225
+Depends: grub-common (>= 2.02)
+Recommends: shim-signed
+Built-Using: grub2 (= 2.02)
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub-efi-amd64-signed/grub-efi-amd64-signed_1.67.5+2.04+dde_amd64.deb
+Size: 476192
+SHA256: 11eae6aa340bdca81d314805c47bb5e0197605763d21a4d96ffe1001e17bdbff
+SHA1: 69a71b1b7ab5f7ffd98d0be808251f2f330dab90
+MD5sum: 66d9f3fef74501273e19a05c35ef540f
+Description: GRand Unified Bootloader, version 2 (amd64 UEFI signed by Debian)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This package contains the binaries signed by the Debian UEFI CA to be used by
+ shim-signed.
+
+Package: grub-efi-ia32
+Source: grub2
+Version: 2.04.25-18
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 159
+Depends: debconf (>= 0.5) | debconf-2.0, grub-common (= 2.04.25-18), grub2-common (= 2.04.25-18), grub-efi-ia32-bin (= 2.04.25-18), ucf
+Conflicts: elilo, grub (<< 0.97-54), grub-coreboot, grub-efi-amd64, grub-ieee1275, grub-legacy, grub-pc, grub-xen
+Replaces: grub, grub-common (<= 1.97~beta2-1), grub-coreboot, grub-efi, grub-efi-amd64, grub-ieee1275, grub-legacy, grub-pc, grub2 (<< 2.04.25-18)
+Multi-Arch: foreign
+Homepage: https://www.gnu.org/software/grub/
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub2/grub-efi-ia32_2.04.25-18_amd64.deb
+Size: 39976
+SHA256: e8eafb64b90db1fbeece008419e3b6137c6fc734326293dcf2fec8b185b32a18
+SHA1: 97a4ad49d3bd53d10dc0e0ba6223f7f1a2e0c83d
+MD5sum: c7220cc2bb76c1e3397cdc9f8f185419
+Description: GRand Unified Bootloader, version 2 (EFI-IA32 version)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This is a dependency package for a version of GRUB that has been built for
+ use with the EFI-IA32 architecture, as used by Intel Macs (unless a BIOS
+ interface has been activated).  Installing this package indicates that this
+ version of GRUB should be the active boot loader.
+
+Package: grub-efi-ia32-bin
+Source: grub2
+Version: 2.04.25-18
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 6257
+Depends: grub-common (= 2.04.25-18)
+Recommends: efibootmgr
+Replaces: grub-common (<= 1.97~beta2-1), grub-efi, grub-efi-ia32 (<< 1.99-1), grub2 (<< 2.04.25-18)
+Multi-Arch: foreign
+Homepage: https://www.gnu.org/software/grub/
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub2/grub-efi-ia32-bin_2.04.25-18_amd64.deb
+Size: 662040
+SHA256: e2a246733299c36d2bf9feb88a5a979bc239d64edf354dfb1e3ce16d20e3afb1
+SHA1: 61dec8a7ccbec983f37dcddfffb85902a5ddc931
+MD5sum: e96999a10d9008a3151deab7c2b3cec1
+Description: GRand Unified Bootloader, version 2 (EFI-IA32 modules)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+ .
+ This package contains GRUB modules that have been built for use with the
+ EFI-IA32 architecture, as used by Intel Macs (unless a BIOS interface has
+ been activated).  It can be installed in parallel with other flavours, but
+ will not automatically install GRUB as the active boot loader nor
+ automatically update grub.cfg on upgrade unless grub-efi-ia32 is also
+ installed.
+Efi-Vendor: debian
+
+Package: grub-pc
+Source: grub2
+Version: 2.04.25-18
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 534
+Depends: debconf (>= 0.5) | debconf-2.0, grub-common (= 2.04.25-18), grub2-common (= 2.04.25-18), grub-pc-bin (= 2.04.25-18), ucf
+Conflicts: grub (<< 0.97-54), grub-coreboot, grub-efi-amd64, grub-efi-ia32, grub-ieee1275, grub-legacy, grub-xen
+Replaces: grub, grub-common (<= 1.97~beta2-1), grub-coreboot, grub-efi-amd64, grub-efi-ia32, grub-ieee1275, grub-legacy, grub2 (<< 2.04.25-18)
+Multi-Arch: foreign
+Homepage: https://www.gnu.org/software/grub/
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub2/grub-pc_2.04.25-18_amd64.deb
+Size: 131140
+SHA256: edc691bfa66e7fd944e6307b280929cc1ee09dda1fa01cd5ad7c1578c43d0c56
+SHA1: 3d5e4f4d995a58a77542b450793a9f51e8a971fb
+MD5sum: 48af7b6605f5bbcc5785a1aabf865d58
+Description: GRand Unified Bootloader, version 2 (PC/BIOS version)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+  - VESA-based graphical mode with background image support and complete 24-bit
+    color set.
+  - Support for extended charsets.  Users can write UTF-8 text to their menu
+    entries.
+ .
+ This is a dependency package for a version of GRUB that has been built for
+ use with the traditional PC/BIOS architecture.  Installing this package
+ indicates that this version of GRUB should be the active boot loader.
+
+Package: grub-pc-bin
+Source: grub2
+Version: 2.04.25-18
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 3061
+Depends: libc6 (>= 2.28), libdevmapper1.02.1 (>= 2:1.02.36), grub-common (= 2.04.25-18)
+Suggests: desktop-base (>= 4.0.6)
+Replaces: grub-common (<= 1.97~beta2-1), grub-pc (<< 1.99-1), grub2 (<< 2.04.25-18)
+Multi-Arch: foreign
+Homepage: https://www.gnu.org/software/grub/
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub2/grub-pc-bin_2.04.25-18_amd64.deb
+Size: 971112
+SHA256: 0bc4ae8e72739a6c35d4360bc88c20cd0cb54b4a6045d0cf1f32b143c0daa9a9
+SHA1: b06f8c52a8eb5ffa6adeff51878a7886d7bf3123
+MD5sum: 01c927ce2eab762a5062901a21f8d71d
+Description: GRand Unified Bootloader, version 2 (PC/BIOS modules)
+ GRUB is a portable, powerful bootloader.  This version of GRUB is based on a
+ cleaner design than its predecessors, and provides the following new features:
+ .
+  - Scripting in grub.cfg using BASH-like syntax.
+  - Support for modern partition maps such as GPT.
+  - Modular generation of grub.cfg via update-grub.  Packages providing GRUB
+    add-ons can plug in their own script rules and trigger updates by invoking
+    update-grub.
+  - VESA-based graphical mode with background image support and complete 24-bit
+    color set.
+  - Support for extended charsets.  Users can write UTF-8 text to their menu
+    entries.
+ .
+ This package contains GRUB modules that have been built for use with the
+ traditional PC/BIOS architecture.  It can be installed in parallel with
+ other flavours, but will not automatically install GRUB as the active boot
+ loader nor automatically update grub.cfg on upgrade unless grub-pc is also
+ installed.
+
+Package: grub2-common
+Source: grub2
+Version: 2.04.25-18
+Architecture: amd64
+Maintainer: GRUB Maintainers <pkg-grub-devel@alioth-lists.debian.net>
+Installed-Size: 1311
+Depends: grub-common (= 2.04.25-18), dpkg (>= 1.15.4) | install-info, libc6 (>= 2.28), libdevmapper1.02.1 (>= 2:1.02.36), libefiboot1 (>= 37), libefivar1 (>= 37), liblzma5 (>= 5.1.1alpha+20120614)
+Conflicts: grub-legacy
+Breaks: grub (<< 0.97-54), grub-cloud-amd64 (<< 0.0.4), grub-coreboot (<< 2.02+dfsg1-7), grub-doc (<< 0.97-32), grub-efi-amd64 (<< 2.02+dfsg1-7), grub-efi-arm (<< 2.02+dfsg1-7), grub-efi-arm64 (<< 2.02+dfsg1-7), grub-efi-ia32 (<< 2.02+dfsg1-7), grub-efi-ia64 (<< 2.02+dfsg1-7), grub-efi-loongarch64 (<< 2.02+dfsg1-7), grub-ieee1275 (<< 2.02+dfsg1-7), grub-legacy-doc (<< 0.97-59), grub-pc (<< 2.02+dfsg1-7), grub-uboot (<< 2.02+dfsg1-7), grub-xen (<< 2.02+dfsg1-7), grub-yeeloong (<< 2.02+dfsg1-7), shim (<< 0.9+1474479173.6c180c6-0ubuntu1~)
+Replaces: grub, grub-cloud-amd64 (<< 0.0.4), grub-common (<< 1.99-1), grub-coreboot (<< 2.02+dfsg1-7), grub-doc (<< 0.97-32), grub-efi-amd64 (<< 2.02+dfsg1-7), grub-efi-arm (<< 2.02+dfsg1-7), grub-efi-arm64 (<< 2.02+dfsg1-7), grub-efi-ia32 (<< 2.02+dfsg1-7), grub-efi-ia64 (<< 2.02+dfsg1-7), grub-efi-loongarch64 (<< 2.02+dfsg1-7), grub-ieee1275 (<< 2.02+dfsg1-7), grub-legacy, grub-legacy-doc (<< 0.97-59), grub-pc (<< 2.02+dfsg1-7), grub-uboot (<< 2.02+dfsg1-7), grub-xen (<< 2.02+dfsg1-7), grub-yeeloong (<< 2.02+dfsg1-7)
+Multi-Arch: foreign
+Homepage: https://www.gnu.org/software/grub/
+Priority: optional
+Section: admin
+Filename: pool/main/g/grub2/grub2-common_2.04.25-18_amd64.deb
+Size: 592968
+SHA256: 56c7471cb252ebc2a80c20beef29431eac0c88c18403486d56bdaa15cacd2c0c
+SHA1: 59571fb0ebeb7bf1ec84d896e5dd9c5af6d74058
+MD5sum: de96167372fad198ce6c822c268ddafa
+Description: GRand Unified Bootloader (common files for version 2)
+ This package contains common files shared by the distinct flavours of GRUB.
+ The files in this package are specific to GRUB 2, and would break GRUB
+ Legacy if installed on the same system.
+
+Package: libaudio2
+Source: nas
+Version: 1.9.4-6
+Architecture: amd64
+Maintainer: Steve McIntyre <93sam@debian.org>
+Installed-Size: 165
+Depends: libc6 (>= 2.28), libxau6, libxt6
+Suggests: nas
+Replaces: nas-lib
+Provides: nas-lib
+Multi-Arch: same
+Priority: optional
+Section: libs
+Filename: pool/main/n/nas/libaudio2_1.9.4-6_amd64.deb
+Size: 80048
+SHA256: 72fd507933e3cf2c7d0143a63f5c7ababca0d8aa94e247f38e0614da6abf5042
+SHA1: 3f55c3b4c415411542946e637fc2b0fd003e03b8
+MD5sum: 19ef471b055ea85fe9c64fc40e03041b
+Description: Network Audio System - shared libraries
+ The Network Audio System (NAS) was developed by NCD for playing,
+ recording, and manipulating audio data over a network. Like the X
+ Window System, it uses the client/server model to separate
+ applications from the specific drivers that control audio input and
+ output devices.
+ .
+ This package contains the NAS library (libaudio), needed for both remote
+ and local output.
+
+Package: libchewing3
+Source: libchewing
+Version: 0.5.1-4
+Architecture: amd64
+Maintainer: Debian Input Method Team <debian-input-method@lists.debian.org>
+Installed-Size: 241
+Depends: libchewing3-data (>= 0.4.0), libc6 (>= 2.14), libsqlite3-0 (>= 3.5.9)
+Breaks: scim-chewing (<< 0.3.3)
+Provides: libchewing
+Multi-Arch: same
+Homepage: http://chewing.im
+Priority: optional
+Section: libs
+Filename: pool/main/libc/libchewing/libchewing3_0.5.1-4_amd64.deb
+Size: 113604
+SHA256: 6b60bf541bf676ca81664c34ba51a4774daafc38b3ed9953478f0460fda2087c
+SHA1: 810f0566605e20a728fe4d5179fad4f95908984b
+MD5sum: 64248ecde447186d49b30e7037be2f62
+Description: intelligent phonetic input method library
+ libchewing is an intelligent phonetic input method library for Chinese.
+ .
+ It provides the core algorithm and logic so that they can be shared among
+ the various input methods like JMCCE, xcin-chewing, scim-chewing,
+ iiimf-chewing, screen-chewing, ime-chewing, etc.
+ .
+ The Chewing input method is a smart bopomofo fonetics input method that
+ is useful for inputing Mandarin Chinese based language.
+ .
+ This package contains shared library used by other programs.
+
+Package: libchewing3-data
+Source: libchewing
+Version: 0.5.1-4
+Architecture: all
+Maintainer: Debian Input Method Team <debian-input-method@lists.debian.org>
+Installed-Size: 3695
+Breaks: libchewing-data (<= 0.2.7)
+Provides: libchewing-data
+Multi-Arch: foreign
+Homepage: http://chewing.im
+Priority: optional
+Section: misc
+Filename: pool/main/libc/libchewing/libchewing3-data_0.5.1-4_all.deb
+Size: 1440400
+SHA256: 17b386c1f64ae0935d769012c42f014c40119d2fccb0b6db339ba07bb8c4cea2
+SHA1: 3327c1405e480907d80d7548e4d0ecb17c80be2a
+MD5sum: 1aea7eed71614512c607e6ac8555ed40
+Description: intelligent phonetic input method library - data files
+ libchewing is an intelligent phonetic input method library for Chinese.
+ .
+ It provides the core algorithm and logic so that they can be shared among
+ the various input methods like JMCCE, xcin-chewing, scim-chewing,
+ iiimf-chewing, screen-chewing, ime-chewing, etc.
+ .
+ The Chewing input method is a smart bopomofo fonetics input method that
+ is useful for inputing Mandarin Chinese based language.
+ .
+ This package contains data files of libchewing3.
+
+Package: libegl-nvidia0
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 1574
+Depends: nvidia-alternative (= 510.73.08-1), libc6 (>= 2.4), libegl1, libnvidia-egl-wayland1, libnvidia-eglcore (= 510.73.08-1)
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/libegl-nvidia0_510.73.08-1_amd64.deb
+Size: 506656
+SHA256: f91b3dde958b9775d74e1bfe1407703f0a62fdd2e250330f9fb96e46812dba25
+SHA1: e567db27da0f2b0ad92abadb2eb82996f88bc23d
+MD5sum: 1d4a7d5a31cb44e8c0e21b4e82759ba3
+Description: NVIDIA binary EGL library
+ EGL provides a platform-agnostic mechanism for creating rendering surfaces
+ for use with other graphics libraries, such as OpenGL|ES.
+ .
+ See the description of the nvidia-driver package
+ or /usr/share/doc/libgl1-nvidia-glx/README.txt.gz
+ for a complete list of supported GPUs and PCI IDs.
+ .
+ This package contains the driver specific binary EGL implementation provided
+ by NVIDIA that is accessed via GLVND.
+
+Package: libgl1-nvidia-glvnd-glx
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 428
+Depends: libgl1 (>= 0.2.999) | libgl1-glvnd-nvidia-glx, libglx-nvidia0 (= 510.73.08-1)
+Provides: libgl1-nvidia-glx-any
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/libgl1-nvidia-glvnd-glx_510.73.08-1_amd64.deb
+Size: 417048
+SHA256: 3c139b832f13a7b469bbb6abad3ddc0f720697564dd30643219448525972897d
+SHA1: 3d80c1c21b0695e2e0321ea42966d0f8df844dcd
+MD5sum: 9f95415f3b7ca37f970870633589f967
+Description: NVIDIA binary OpenGL/GLX library (GLVND variant)
+ The NVIDIA binary driver provides optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES applications via a direct-rendering X Server
+ for graphics cards using NVIDIA chip sets.
+ .
+ See the description of the nvidia-driver package
+ or /usr/share/doc/libgl1-nvidia-glvnd-glx/README.txt.gz
+ for a complete list of supported GPUs and PCI IDs.
+ .
+ This metapackage depends on the NVIDIA binary OpenGL/GLX implementation using
+ GLVND and the corresponding GLVND loader library.
+
+Package: libglx-nvidia0
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 1620
+Depends: nvidia-alternative (= 510.73.08-1), libglx0 | libglx0-glvnd-nvidia, libc6 (>= 2.2.5), libnvidia-eglcore (= 510.73.08-1), libnvidia-glcore (= 510.73.08-1), libx11-6, libxext6
+Provides: libglx-vendor
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/libglx-nvidia0_510.73.08-1_amd64.deb
+Size: 477692
+SHA256: db8ba9bbdde0cf155c76620790588415bbbfbb1abe5bea7b8491508cfa32e5ca
+SHA1: b6e4ee35bf3e610416e0dfa70e97bcb8432a2aad
+MD5sum: e280c399b139a2c3ffddf57cec8f7e9c
+Description: NVIDIA binary GLX library
+ GLX ("OpenGL Extension to the X Window System") provides an interface between
+ OpenGL and the X Window System as well as extensions to OpenGL itself.
+ .
+ See the description of the nvidia-driver package
+ or /usr/share/doc/libgl1-nvidia-glx/README.txt.gz
+ for a complete list of supported GPUs and PCI IDs.
+ .
+ This package contains the driver specific binary GLX implementation by NVIDIA
+ that is accessed via GLVND.
+
+Package: libnvidia-egl-wayland1
+Source: egl-wayland
+Version: 1:1.1.2-1
+Architecture: amd64
+Maintainer: Timo Aaltonen <tjaalton@debian.org>
+Installed-Size: 64
+Depends: libc6 (>= 2.14), libwayland-client0 (>= 1.11.0), libwayland-server0 (>= 1.2.0)
+Conflicts: libnvidia-gl-390, libnvidia-gl-410 (<< 410.93), libnvidia-legacy-390xx-egl-wayland1, nvidia-egl-wayland-common
+Replaces: libnvidia-gl-390, libnvidia-gl-410 (<< 410.93), libnvidia-legacy-390xx-egl-wayland1, nvidia-egl-wayland-common
+Multi-Arch: same
+Homepage: https://github.com/NVIDIA/egl-wayland
+Priority: optional
+Section: libs
+Filename: pool/main/e/egl-wayland/libnvidia-egl-wayland1_1.1.2-1_amd64.deb
+Size: 18604
+SHA256: 6e1aba9d99d408454e3a44866aa2e2e29c42f802260d3f09eba17299b8a24071
+SHA1: 8f4d0d90a336b539f37b99d9798c9a1da229dbe0
+MD5sum: 91c9cee2e1f6a7bfb1cd46ecc37c867f
+Description: Wayland EGL External Platform library -- shared library
+ This is a work-in-progress implementation of a EGL (Embedded-System
+ Graphics Library) External Platform library to add client-side Wayland
+ support to EGL on top of EGLDevice and EGLStream families of extensions.
+ .
+ This library implements an EGL External Platform interface to work along
+ with EGL drivers that support the external platform mechanism. More
+ information about EGL External platforms and the interface can be found at:
+ .
+ https://github.com/NVIDIA/eglexternalplatform
+ .
+ This package contains the shared library.
+
+Package: libnvidia-eglcore
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 32035
+Depends: libc6 (>= 2.10)
+Conflicts: libnvidia-eglcore-510.73.08
+Provides: libnvidia-eglcore-510.73.08
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/libnvidia-eglcore_510.73.08-1_amd64.deb
+Size: 8859060
+SHA256: ad2ed65d72ad7278daf074bcf460c1ee1f07bdad1c397abed23b55501963479d
+SHA1: 47aa41ed433e1be5b1559949645275710b808677
+MD5sum: 45e5e345d356758f49a2ddab637e1918
+Description: NVIDIA binary EGL core libraries
+ EGL provides a platform-agnostic mechanism for creating rendering surfaces
+ for use with other graphics libraries, such as OpenGL|ES.
+ .
+ OpenGL|ES is a cross-platform API for full-function 2D and 3D graphics on
+ embedded systems - including consoles, phones, appliances and vehicles.
+ It contains a subset of OpenGL plus a number of extensions for the
+ special needs of embedded systems.
+ .
+ This package contains the private core libraries used by the NVIDIA
+ implementation of EGL and OpenGL|ES.
+
+Package: libnvidia-glcore
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 33702
+Depends: libc6 (>= 2.10)
+Conflicts: libnvidia-glcore-510.73.08
+Provides: libnvidia-glcore-510.73.08
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/libnvidia-glcore_510.73.08-1_amd64.deb
+Size: 9040392
+SHA256: e5f62571ebf2e51cc7044482b6dd091b5718273c3e0bb431bd51a1a3a4d29168
+SHA1: a225f59c85dc3078e54e12a63979714ca2e5f0fb
+MD5sum: 86f376fb731db9c4b10295ba5aa5c4d6
+Description: NVIDIA binary OpenGL/GLX core libraries
+ The NVIDIA binary driver provides optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES applications via a direct-rendering X Server
+ for graphics cards using NVIDIA chip sets.
+ .
+ This package contains the private core libraries used by the NVIDIA
+ implementation of OpenGL and GLX.
+
+Package: libnvidia-ml1
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 2113
+Depends: nvidia-alternative (= 510.73.08-1), libc6 (>= 2.7)
+Provides: libnvidia-ml.so.1 (= 510.73.08)
+Multi-Arch: same
+Homepage: https://developer.nvidia.com/nvidia-management-library-NVML
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/libnvidia-ml1_510.73.08-1_amd64.deb
+Size: 729320
+SHA256: ab64230cbdbacef279243161eab0043d4fd9b59ea7122483d3b3fbb8698ab27c
+SHA1: df93d23c2687564d6eea24ba326429d5460aacf1
+MD5sum: 277a4cd3da5f9e8d9ad52e6dc21cdbb6
+Description: NVIDIA Management Library (NVML) runtime library
+ The NVIDIA Management Library (NVML) provides a monitoring and management API.
+ It provides a direct access to the queries and commands exposed via nvidia-smi.
+ .
+ This package contains the nvidia-ml runtime library.
+
+Package: libopencc2
+Source: opencc
+Version: 1.0.5-2
+Architecture: amd64
+Maintainer: Debian Input Method Team <debian-input-method@lists.debian.org>
+Installed-Size: 5302
+Depends: libopencc2-data, libc6 (>= 2.14), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2)
+Breaks: libopencc2-data (<< 1.0.4-5~)
+Replaces: libopencc2-data (<< 1.0.4-5~)
+Homepage: https://github.com/BYVoid/OpenCC
+Priority: optional
+Section: libs
+Filename: pool/main/o/opencc/libopencc2_1.0.5-2_amd64.deb
+Size: 1209624
+SHA256: 3289c274b3f351ae2315af89aa88c988be081d1e7c1689dd436a322b4fe7abcb
+SHA1: eb1a48eac9efb5b16b087e7f4686977e4f4ee7dd
+MD5sum: 9892c945842330e0fb5dd87303c1291b
+Description: simplified-traditional Chinese conversion library - runtime
+ opencc is a library for converting character between traditional Chinese and
+ simplified Chinese.
+ .
+ This package includes the shared library.
+
+Package: libopencc2-data
+Source: opencc
+Version: 1.0.5-2
+Architecture: all
+Maintainer: Debian Input Method Team <debian-input-method@lists.debian.org>
+Installed-Size: 1544
+Breaks: libopencc-dev (<< 1.0.4-5~), libopencc2 (<< 1.0.4-5~)
+Replaces: libopencc-dev (<< 1.0.4-5~), libopencc2 (<< 1.0.4-5~)
+Multi-Arch: foreign
+Homepage: https://github.com/BYVoid/OpenCC
+Priority: optional
+Section: libs
+Filename: pool/main/o/opencc/libopencc2-data_1.0.5-2_all.deb
+Size: 118532
+SHA256: 1e74230a12794ff31fc3eb05d8dc1a2a0a880c5f650c589e24922701f3efdacf
+SHA1: 1da6600ff8b668ba367a3ef336812aebae6dc1fe
+MD5sum: c0add7c63764eb12f332eb7ba50a0242
+Description: simplified-traditional Chinese conversion library - data files
+ opencc is a library for converting character between traditional Chinese and
+ simplified Chinese.
+ .
+ This package includes the data files.
+
+Package: libqt4-network
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 2104
+Depends: libc6 (>= 2.15), libgcc1 (>= 1:3.0), libqtcore4 (= 4:4.8.7.1+dfsg-1+dde), libqtdbus4 (= 4:4.8.7.1+dfsg-1+dde), libstdc++6 (>= 4.1.1), zlib1g (>= 1:1.1.4)
+Recommends: ca-certificates
+Multi-Arch: same
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/libqt4-network_4.8.7.1+dfsg-1+dde_amd64.deb
+Size: 581316
+SHA256: 4c5a621a17f8d8857a15b5665fe676e73db271abd98d464eda7d7a36b2c66bf4
+SHA1: e43d32d5d811338e4cb4ed7edf807324c9359df6
+MD5sum: 5ef1cd32b09c204303c5fc8191828577
+Description: Qt 4 network module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ The QtNetwork module offers classes that allow you to write TCP/IP clients and
+ servers. It provides classes to make network programming easier and portable.
+
+Package: libqt4-opengl
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 1203
+Depends: libc6 (>= 2.14), libfreetype6 (>= 2.2.1), libgcc1 (>= 1:3.0), libgl1, libqtcore4 (= 4:4.8.7.1+dfsg-1+dde), libqtgui4 (= 4:4.8.7.1+dfsg-1+dde), libstdc++6 (>= 4.1.1), libx11-6, libxrender1
+Multi-Arch: same
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/libqt4-opengl_4.8.7.1+dfsg-1+dde_amd64.deb
+Size: 317228
+SHA256: f26be51d0cd0cefd2583bd48ed1aa427f237e825910453b0dde37be399189d1e
+SHA1: bb5bb0968aee941190ba15cea85132376f7b2fda
+MD5sum: 41153e88c6c39f1ee386789cd7c5ba40
+Description: Qt 4 OpenGL module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ The QtOpenGL module offers classes that make it easy to use OpenGL in Qt
+ applications.
+ .
+ OpenGL is a standard API for rendering 3D graphics. OpenGL only deals with 3D
+ rendering and provides little or no support for GUI programming issues.
+
+Package: libqt4-xml
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 400
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libqtcore4 (= 4:4.8.7.1+dfsg-1+dde), libstdc++6 (>= 4.1.1)
+Multi-Arch: same
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/libqt4-xml_4.8.7.1+dfsg-1+dde_amd64.deb
+Size: 107820
+SHA256: eebae64937ae0fcc527cbded681790d51f358ae6063e99c55f6f54cd898ed5bc
+SHA1: 58c3f6e65c814350676b94700cbaec44eb39b090
+MD5sum: 73708343ec1ead360d6cc35af241bf11
+Description: Qt 4 XML module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ The QtXml module provides a stream reader and writer for XML documents,
+ and C++ implementations of SAX and DOM.
+
+Package: libqt4-xmlpatterns
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 4800
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libqt4-network (= 4:4.8.7.1+dfsg-1+dde), libqtcore4 (= 4:4.8.7.1+dfsg-1+dde), libstdc++6 (>= 4.1.1)
+Multi-Arch: same
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/libqt4-xmlpatterns_4.8.7.1+dfsg-1+dde_amd64.deb
+Size: 1140532
+SHA256: 2d30f41c59a33a8850173e312399dc66e104a12ffc54b4d701688a84928e486c
+SHA1: 840f41476958b7ab2745cba8c7b1375b7a674e85
+MD5sum: 6985a8fc9461d2f24a1fc42b9c05252b
+Description: Qt 4 XML patterns module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ QtXmlPatterns is a XQuery and XPath engine for XML and custom data models.
+
+Package: libqtcore4
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 5093
+Depends: qtcore4-l10n, libc6 (>= 2.15), libgcc1 (>= 1:3.0), libglib2.0-0 (>= 2.22.0), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+Suggests: libicu57, libthai0
+Multi-Arch: same
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/libqtcore4_4.8.7.1+dfsg-1+dde_amd64.deb
+Size: 1597368
+SHA256: 3c2532693ad383418bfe96b9ab7d295c2996a52ab8b09dc6001634118c8f6832
+SHA1: 06094dd413be302b7e2f37efe79900281f67783f
+MD5sum: 7f7deacacae7cceff0ee97fedc2a51cc
+Description: Qt 4 core module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ The QtCore module contains core non-GUI functionality.
+
+Package: libqtdbus4
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 645
+Depends: libc6 (>= 2.14), libdbus-1-3 (>= 1.9.14), libgcc1 (>= 1:3.0), libqt4-xml (= 4:4.8.7.1+dfsg-1+dde), libqtcore4 (= 4:4.8.7.1+dfsg-1+dde), libstdc++6 (>= 4.1.1)
+Breaks: libqt4-dbus (<< 4:4.8.2+dfsg-8)
+Replaces: libqt4-dbus (<< 4:4.8.2+dfsg-8)
+Multi-Arch: same
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/libqtdbus4_4.8.7.1+dfsg-1+dde_amd64.deb
+Size: 196236
+SHA256: 19f4e16fe16b3ae202cb3681234df901e954a256d783708c956081cc106fdf26
+SHA1: bbc891d36f7310e2cc85ed1188762376f3d4026f
+MD5sum: 7fef2f2ccfd311c3920a2039bd595cc4
+Description: Qt 4 D-Bus module library
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ The QtDBus module is a Unix-only library that you can use to make Inter-Process
+ Communication using the D-Bus protocol.
+ .
+ Applications using the QtDBus module can provide services to other, remote
+ applications by exporting objects, as well as use services exported by those
+ applications by placing calls and accessing properties.
+
+Package: libqtgui4
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 12850
+Depends: fontconfig, libaudio2, libc6 (>= 2.15), libfontconfig1 (>= 2.12.6), libfreetype6 (>= 2.3.5), libgcc1 (>= 1:3.0), libglib2.0-0 (>= 2.12.0), libice6 (>= 1:1.0.0), libjpeg62-turbo (>= 1.3.1), libmng1 (>= 1.0.10), libpng16-16 (>= 1.6.2-1), libqtcore4 (= 4:4.8.7.1+dfsg-1+dde), libsm6, libstdc++6 (>= 4.1.1), libtiff5 (>= 4.0.3), libx11-6, libxext6, libxrender1, zlib1g (>= 1:1.1.4)
+Recommends: libcups2, qt-at-spi
+Suggests: qt4-qtconfig
+Multi-Arch: same
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/libqtgui4_4.8.7.1+dfsg-1+dde_amd64.deb
+Size: 4194544
+SHA256: 9302fffe5c3f9e560102b22294dbab6da7970b5b9b208551ae944d1e70ed5cf9
+SHA1: 3925ea3eab5b86c6d60eb401c4ab8008356092cb
+MD5sum: 367d7e3ed4e3ab588794d615af6c5593
+Description: Qt 4 GUI module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ The QtGui module extends QtCore with GUI functionality.
+
+Package: libqtwebkit4
+Source: qtwebkit
+Version: 2.3.4.dfsg.1-1+dde
+Architecture: amd64
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 36677
+Depends: libc6 (>= 2.27), libfontconfig1 (>= 2.12.6), libgcc1 (>= 1:3.0), libgl1, libglib2.0-0 (>= 2.37.3), libgstreamer-plugins-base1.0-0 (>= 1.0.0), libgstreamer1.0-0 (>= 1.0.0), libjpeg62-turbo (>= 1.3.1), libpng16-16 (>= 1.6.2-1), libqt4-network (>= 4:4.8.6+git64-g5dc8b2b+dfsg-2~), libqt4-opengl (>= 4:4.8.6+git64-g5dc8b2b+dfsg-2~), libqt4-xmlpatterns (>= 4:4.8.6+git64-g5dc8b2b+dfsg-2~), libqtcore4 (>= 4:4.8.7), libqtgui4 (>= 4:4.8.6+git64-g5dc8b2b+dfsg-2~), libsqlite3-0 (>= 3.5.9), libstdc++6 (>= 5.2), libx11-6, libxrender1, zlib1g (>= 1:1.2.0)
+Replaces: libqt4-webkit (<= 4:4.7.0~beta1)
+Multi-Arch: same
+Homepage: http://trac.webkit.org/wiki/QtWebKit
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qtwebkit/libqtwebkit4_2.3.4.dfsg.1-1+dde_amd64.deb
+Size: 9131220
+SHA256: 8fa710c05b4c4a02127ecaf37830b998f374d04234ef7b2559f50c2f9a79e962
+SHA1: 26ff29ee9efe02ced7bf9db53035bc5745835cad
+MD5sum: 16925de75ee88756e4de8fcb3186d9e1
+Description: Web content engine library for Qt
+ QtWebKit provides a Web browser engine that makes it easy to embed content
+ from the World Wide Web into your Qt application.
+
+Package: mokutil
+Version: 0.3.0+1538710437.fb6250f-1
+Architecture: amd64
+Maintainer: Simon Quigley <tsimonq2@debian.org>
+Installed-Size: 70
+Depends: libc6 (>= 2.14), libefivar1 (>= 37), libssl1.1 (>= 1.1.0)
+Priority: optional
+Section: admin
+Filename: pool/main/m/mokutil/mokutil_0.3.0+1538710437.fb6250f-1_amd64.deb
+Size: 22580
+SHA256: c11fc18e856c57d0d82d7bc394b64188d8436fabf72fcc9ec4b6863b10d396b4
+SHA1: cc607e81bd6d98cf36f567850710ac76117dd986
+MD5sum: 76abaf78554072bbc20bb38794a4348f
+Description: tools for manipulating machine owner keys
+ This program provides the means to enroll and erase the machine owner
+ keys (MOK) stored in the database of shim.
+
+Package: nvidia-alternative
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 283
+Pre-Depends: dpkg (>= 1.17.21), nvidia-legacy-check (>= 495)
+Depends: glx-alternative-nvidia (>= 1.2)
+Conflicts: libegl1-glvnd-nvidia, libgl1-glvnd-nvidia-glx, libgles1-glvnd-nvidia, libgles2-glvnd-nvidia, libglvnd0-nvidia, libglx0-glvnd-nvidia, libopengl0-glvnd-nvidia
+Breaks: nvidia-tesla-alternative (>> 0)
+Provides: nvidia-alternative--kmod-alias
+Multi-Arch: foreign
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-alternative_510.73.08-1_amd64.deb
+Size: 246408
+SHA256: d762c887816ec3e78ada45cf966d1e9a14dde8b472e56c7d59fb863523ffd0b9
+SHA1: 8acfa493301480046a0274fcfe878b58de0732f0
+MD5sum: 06e6ae14411fac8b11083f474041497b
+Description: allows the selection of NVIDIA as GLX provider
+ In setups with several NVIDIA driver versions installed (e.g. current and
+ legacy) this metapackage registers an alternative to allow easy switching
+ between the different versions.
+ .
+ Use 'update-glx --config nvidia' to select a version.
+ .
+ This package does not depend on the corresponding NVIDIA libraries.
+ In order to install the NVIDIA driver and libraries, install the
+ nvidia-driver package instead.
+
+Package: nvidia-driver
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 1439
+Pre-Depends: nvidia-installer-cleanup, nvidia-legacy-check (>= 495)
+Depends: nvidia-driver-libs (= 510.73.08-1), nvidia-driver-bin (= 510.73.08-1), xserver-xorg-video-nvidia (= 510.73.08-1), nvidia-vdpau-driver (= 510.73.08-1), nvidia-alternative (= 510.73.08-1), nvidia-kernel-dkms (= 510.73.08-1) | nvidia-kernel-510.73.08, nvidia-support
+Recommends: nvidia-settings (>= 510), libnvidia-cfg1 (= 510.73.08-1), nvidia-persistenced
+Suggests: nvidia-kernel-dkms (>= 510.73.08) | nvidia-kernel-source (>= 510.73.08)
+Provides: nvidia-driver-any, nvidia-glx-any
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/x11
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-driver_510.73.08-1_amd64.deb
+Size: 594416
+SHA256: 08d47d0ccac2df3d2c137adcb308f1a672816f3d969b0e8c7d391374426006ed
+SHA1: 120c265cf6fc2432e3822dd50671a485d4b11071
+MD5sum: 8c5e656244a011c5421a539e2392a679
+Description: NVIDIA metapackage
+ This metapackage depends on the NVIDIA binary driver and libraries
+ that provide optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES/Vulkan applications via a direct-rendering X Server.
+ .
+ Please see the nvidia-kernel-dkms or
+ nvidia-kernel-source packages
+ for building the kernel module required by this package.
+ This will provide nvidia-kernel-510.73.08.
+ .
+ This version only supports GeForce, NVS, Quadro, RTX, Tesla, ... GPUs based on
+ the Maxwell, Pascal, Volta, Turing, Ampere or newer architectures.
+ Look at the legacy driver or Tesla driver packages for older cards.
+ .
+ See /usr/share/doc/nvidia-driver/README.txt.gz
+ for a complete list of supported GPUs and PCI IDs.
+ .
+ Building the kernel module has been tested up to Linux 5.17.
+
+Package: nvidia-driver-bin
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 572
+Depends: nvidia-alternative (= 510.73.08-1), libc6 (>= 2.2.5), libnvidia-ml1 (>= 319) | libnvidia-ml.so.1 (>= 319)
+Recommends: nvidia-driver
+Conflicts: nvidia-driver-bin-510.73.08
+Provides: nvidia-driver-bin-510.73.08
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/x11
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-driver-bin_510.73.08-1_amd64.deb
+Size: 339268
+SHA256: 94f5db48b945ff27a5141010a53a361e95fd0a93c4d0de3dba1203d961171f78
+SHA1: a6299eb88de6ecc43fc663dc059ab2cab1409172
+MD5sum: bf5a6d859d8fb3291ecf20e14c49acc2
+Description: NVIDIA driver support binaries
+ The NVIDIA binary driver provides optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES applications via a direct-rendering X Server
+ for graphics cards using NVIDIA chip sets.
+ .
+ This package contains supporting binaries for the driver.
+
+Package: nvidia-driver-libs
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 261
+Depends: libgl1-nvidia-glvnd-glx (= 510.73.08-1), nvidia-egl-icd (= 510.73.08-1)
+Recommends: nvidia-driver-libs:i386 (= 510.73.08-1), libopengl0 | libopengl0-glvnd-nvidia, libglx-nvidia0 (= 510.73.08-1), libgles-nvidia1 (= 510.73.08-1), libgles-nvidia2 (= 510.73.08-1), libnvidia-cfg1 (= 510.73.08-1), libnvidia-encode1 (= 510.73.08-1), nvidia-vulkan-icd (= 510.73.08-1)
+Conflicts: libegl1-glvnd-nvidia, libgl1-glvnd-nvidia-glx, libgl1-nvidia-glx-i386, libgles1-glvnd-nvidia, libgles2-glvnd-nvidia, libglvnd0-nvidia, libglx0-glvnd-nvidia, libopengl0-glvnd-nvidia
+Breaks: libegl1-nvidia, libgl1-nvidia-glx, nvidia-driver-libs-nonglvnd, nvidia-nonglvnd-vulkan-icd
+Provides: nvidia-driver-libs-any
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-driver-libs_510.73.08-1_amd64.deb
+Size: 244788
+SHA256: 9711649e36aee28aeea1c89b28af169b694110cc8780e56ee4293eb65172c96f
+SHA1: df4681ec34f50379954ef5653ce3e257a9f4d76e
+MD5sum: 33e624e73b56739864a46de5cf2b19f4
+Description: NVIDIA metapackage (OpenGL/GLX/EGL/GLES libraries)
+ This metapackage depends on the NVIDIA binary libraries
+ that provide optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES applications via a direct-rendering X Server.
+
+Package: nvidia-egl-common
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 263
+Suggests: libegl-nvidia0 | libegl-nvidia-tesla-510-0 | libegl-nvidia-tesla-470-0 | libegl-nvidia-tesla-450-0 | libegl-nvidia-tesla-418-0 | libegl-nvidia-legacy-390xx0
+Multi-Arch: foreign
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-egl-common_510.73.08-1_amd64.deb
+Size: 244760
+SHA256: 3c5e67e3143d77a3155a14be0384bc4844dc110dbcfe7eedadea7a4cec6b8ac5
+SHA1: fa1dd38a13383aa4103d8febd96d2b4b18f0670d
+MD5sum: 44d2739de8bc8109ab222e0b15b5c0d6
+Description: NVIDIA binary EGL driver - common files
+ EGL provides a platform-agnostic mechanism for creating rendering surfaces
+ for use with other graphics libraries, such as OpenGL|ES.
+ .
+ This package provides the common files for the NVIDIA installable client
+ driver (ICD) for EGL via GLVND.
+
+Package: nvidia-egl-icd
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 257
+Depends: nvidia-egl-common, libegl1 (>= 0.2.999) | libegl1-glvnd-nvidia, libegl-nvidia0 (= 510.73.08-1)
+Enhances: libegl1
+Provides: egl-icd, libegl-vendor
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-egl-icd_510.73.08-1_amd64.deb
+Size: 244464
+SHA256: 83796d4c86a592469d770788cb67be3b582a01ad9d16fe37ebe81247c630e809
+SHA1: 1c6953aa53086edcc4d85f6fa8be9c9cd0e1d50c
+MD5sum: 50eb043c590348bff3299f1d108e65f6
+Description: NVIDIA EGL installable client driver (ICD)
+ EGL provides a platform-agnostic mechanism for creating rendering surfaces
+ for use with other graphics libraries, such as OpenGL|ES.
+ .
+ This metapackage provides the NVIDIA installable client driver (ICD) for
+ EGL via GLVND which supports NVIDIA GPUs.
+
+Package: nvidia-installer-cleanup
+Source: nvidia-support
+Version: 20151021+9
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 52
+Depends: debconf (>= 0.5) | debconf-2.0
+Conflicts: cuda-repo-ubuntu1204, nvidia-current, nvidia-current-updates, nvidia-driver-binary
+Multi-Arch: foreign
+Priority: optional
+Section: contrib/misc
+Filename: pool/main/n/nvidia-support/nvidia-installer-cleanup_20151021+9_amd64.deb
+Size: 19152
+SHA256: a297518b56c213e462b7c726291f41ecbf4aa6bf758b06d2e0d032fe56a9d479
+SHA1: 280a68fd2af6f7b820be5adfcad0cc0f190a3f08
+MD5sum: caedebc5245001329d4eef1ecd1db022
+Description: cleanup after driver installation with the nvidia-installer
+ This package ensures that no remnants of the non-free NVIDIA graphics
+ drivers that were installed with the nvidia-installer remain on the
+ system. Such an installation conflicts with the packaged drivers.
+ .
+ Furthermore using the nvidia-installer to install a new version of the
+ drivers is prevented as long as this package is installed.
+
+Package: nvidia-kernel-common
+Source: nvidia-support
+Version: 20151021+9
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 37
+Priority: optional
+Section: contrib/kernel
+Filename: pool/main/n/nvidia-support/nvidia-kernel-common_20151021+9_amd64.deb
+Size: 10840
+SHA256: e234befc1fa7cd732e8b93e6d5d6dc1e35e2e67afdd67779dfbe415d636e3987
+SHA1: 75d3e06ff7ec2e5d14bceb9a8c379921ad0801f3
+MD5sum: d825de05783c47af5ca3050022929195
+Description: NVIDIA binary kernel module support files
+ This package contains support files used for any version of the NVIDIA
+ kernel module. It sets up udev and ConsoleKit rules, ensures the NVIDIA
+ control device is created, associates the NVIDIA card with the correct
+ kernel module, and performs any other tasks required for the module to
+ work properly.
+
+Package: nvidia-kernel-dkms
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 52938
+Pre-Depends: nvidia-installer-cleanup
+Depends: dkms (>= 2.1.0.0), nvidia-firmware-510.73.08, nvidia-kernel-support--v1
+Recommends: nvidia-driver (>= 510.73.08) | libcuda1 (>= 510.73.08)
+Provides: nvidia-kernel-510.73.08
+Multi-Arch: foreign
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/kernel
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-kernel-dkms_510.73.08-1_amd64.deb
+Size: 29578124
+SHA256: ab8c2b228f0c6d946b93d45b4a0d6c8452d042f5d87b95b8801135d56966948f
+SHA1: e85403cd8c28f69075034e84c04c1a03522f557f
+MD5sum: 4f3c1449b51ea87188f5e8769e3ac785
+Description: NVIDIA binary kernel module DKMS source
+ This package builds the NVIDIA Xorg binary kernel module needed by
+ nvidia-driver, using DKMS.
+ Provided that you have the kernel header packages installed, the kernel
+ module will be built for your running kernel and automatically rebuilt for
+ any new kernel headers that are installed.
+ .
+ The NVIDIA binary driver provides optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES applications via a direct-rendering X Server
+ for graphics cards using NVIDIA chip sets.
+ .
+ This version only supports GeForce, NVS, Quadro, RTX, Tesla, ... GPUs based on
+ the Maxwell, Pascal, Volta, Turing, Ampere or newer architectures.
+ Look at the legacy driver or Tesla driver packages for older cards.
+ .
+ See /usr/share/doc/nvidia-kernel-dkms/README.txt.gz
+ for a complete list of supported GPUs and PCI IDs.
+ .
+ This package contains the blobs for building kernel modules for the
+ amd64 architecture.
+ Building the kernel modules has been tested up to Linux 5.17.
+
+Package: nvidia-kernel-support
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 39775
+Depends: nvidia-alternative (= 510.73.08-1), nvidia-alternative--kmod-alias, nvidia-kernel-common (>= 20151021), nvidia-modprobe (>= 510)
+Conflicts: nvidia-firmware-510.73.08
+Provides: nvidia-firmware-510.73.08, nvidia-kernel-support--v1, nvidia-kernel-support-any
+Multi-Arch: foreign
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/kernel
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-kernel-support_510.73.08-1_amd64.deb
+Size: 20710504
+SHA256: 045e6aba65ccbccb4d2c8905031a3e56b23998bbb54071e7d265f03740809866
+SHA1: 4e42f426616414001d85a4c6b5256fa6ee1bb51e
+MD5sum: a9e7b042a2dcd5e5f58c6764b828c611
+Description: NVIDIA binary kernel module support files
+ The NVIDIA binary driver provides optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES applications via a direct-rendering X Server
+ for graphics cards using NVIDIA chip sets.
+ .
+ This package provides supporting configuration for the kernel module.
+
+Package: nvidia-legacy-check
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 276
+Pre-Depends: debconf | debconf-2.0, pciutils, nvidia-installer-cleanup (>= 20151021)
+Depends: debconf (>= 0.5) | debconf-2.0
+Multi-Arch: foreign
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/libs
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-legacy-check_510.73.08-1_amd64.deb
+Size: 249452
+SHA256: 84d4778585515d2bdb9404d9c3fd7150962c5ddefecd32c0570898284e0041ec
+SHA1: a97230cd1759c4ae3e22c1995d0675978a0f89e0
+MD5sum: b62764fb8e430a525abfd3c5a8adab20
+Description: check for NVIDIA GPUs requiring a legacy driver
+ This package checks whether the system contains NVIDIA GPUs that are no longer
+ supported by the main driver line and require a legacy driver.
+ .
+ If such hardware is present, a (preseedable) debconf question will be asked to
+ confirm the installation of the current driver line.
+
+Package: nvidia-modprobe
+Version: 510.47.03-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 66
+Depends: libc6 (>= 2.14)
+Multi-Arch: foreign
+Homepage: https://github.com/NVIDIA/nvidia-modprobe
+Priority: optional
+Section: contrib/utils
+Filename: pool/main/n/nvidia-modprobe/nvidia-modprobe_510.47.03-1_amd64.deb
+Size: 20404
+SHA256: fb9219ed2a178fac96147836afdf19921e1fac6bb618216c5e756988bd785c63
+SHA1: 1986fa916d20bc30899ff8deafa411bdba8937fb
+MD5sum: 7ab92a7cb38d4bd5d5c8f3b081feea32
+Description: utility to load NVIDIA kernel modules and create device nodes
+ This setuid program is used to create NVIDIA Linux device files and load the
+ NVIDIA kernel module, on behalf of NVIDIA Linux driver components which may
+ not have sufficient privileges to perform these actions on their own.
+
+Package: nvidia-support
+Version: 20151021+9
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 54
+Depends: debconf (>= 0.5) | debconf-2.0
+Multi-Arch: foreign
+Priority: optional
+Section: contrib/misc
+Filename: pool/main/n/nvidia-support/nvidia-support_20151021+9_amd64.deb
+Size: 20004
+SHA256: 333dc08152628215d62cc89b1efa6768c53a890334f5646a270ef51ae175bd49
+SHA1: 2bc81ea036c8c30b3693aaf8205ea91b28ff71f0
+MD5sum: 949db34f81388509c33d7e5d60819270
+Description: NVIDIA binary graphics driver support files
+ This package contains support files needed for all current and legacy
+ versions of the non-free NVIDIA graphics drivers. These include scripts
+ used for warning about a mismatching version of the kernel module or for
+ creating a minimal xorg.conf to enable the NVIDIA driver.
+
+Package: nvidia-vdpau-driver
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 1086
+Pre-Depends: nvidia-installer-cleanup, nvidia-legacy-check (>= 495)
+Depends: libvdpau1 (>= 0.9), nvidia-alternative (= 510.73.08-1), libc6 (>= 2.7), libx11-6, libxext6
+Recommends: nvidia-kernel-dkms (= 510.73.08-1) | nvidia-kernel-510.73.08
+Suggests: nvidia-kernel-dkms (>= 510.73.08) | nvidia-kernel-source (>= 510.73.08)
+Enhances: libvdpau1
+Provides: vdpau-driver
+Multi-Arch: same
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/video
+Filename: pool/main/n/nvidia-graphics-drivers/nvidia-vdpau-driver_510.73.08-1_amd64.deb
+Size: 722088
+SHA256: 689ea204a612771f1fec69a3e0c2b9e8f555485d24387426735e8e3bf5b065cd
+SHA1: f20bba327930568c915d44197f249a047387175c
+MD5sum: d61af1ceec5793442c3f72e2bb31f717
+Description: Video Decode and Presentation API for Unix - NVIDIA driver
+ These libraries provide the Video Decode and Presentation API for Unix.
+ They provide accelerated video playback (incl. H.264) for the supported
+ graphics cards.
+ .
+ This package contains the NVIDIA VDPAU driver.
+ .
+ See /usr/share/doc/nvidia-vdpau-driver/README.txt.gz
+ for more information.
+ .
+ Please see the nvidia-kernel-dkms or
+ nvidia-kernel-source packages
+ for building the kernel module required by this package.
+ This will provide nvidia-kernel-510.73.08.
+
+Package: presage
+Version: 0.9.1.1-1+rebuild
+Architecture: amd64
+Maintainer: Matteo Vescovi <matteo.vescovi@yahoo.co.uk>
+Installed-Size: 267
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libncurses6 (>= 6), libpresage1v5 (>= 0.8.3), libsqlite3-0 (>= 3.5.9), libstdc++6 (>= 5.2), libtinfo6 (>= 6)
+Homepage: http://presage.sourceforge.net/
+Priority: extra
+Section: misc
+Filename: pool/main/p/presage/presage_0.9.1.1-1+rebuild_amd64.deb
+Size: 105868
+SHA256: 8fbf76a8da2dcdef3b1c2b80d574e6c9db9ba41a9cff8bc3c8718184eeb19a91
+SHA1: e1d771e572b796ad9ba7dd0b84cfd846be250f77
+MD5sum: 3c558e9c500c5297af0386accfebc1b1
+Description: intelligent predictive text entry platform (tools and demos)
+ Presage is an intelligent predictive text entry platform.
+ .
+ This package contains the tools required to generate custom
+ statistical data used by the presage predictive text engine to
+ generate predictions.
+ .
+ This package also contains simple demonstration programs and simulator.
+
+Package: qtcore4-l10n
+Source: qt4-x11
+Version: 4:4.8.7.1+dfsg-1+dde
+Architecture: all
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Installed-Size: 4757
+Breaks: libqtcore4 (<< 4:4.8.5+dfsg-1~)
+Replaces: libqtcore4 (<< 4:4.8.5+dfsg-1~)
+Multi-Arch: foreign
+Homepage: http://qt-project.org/
+Priority: optional
+Section: oldlibs
+Filename: pool/main/q/qt4-x11/qtcore4-l10n_4.8.7.1+dfsg-1+dde_all.deb
+Size: 619324
+SHA256: 24e4832da28c6346f5509997b1667b2f05e1250821a3f2403d5175d773d2a1d9
+SHA1: 5960a52ca5ae5ade79dc04ff04c05367eb994b77
+MD5sum: 1cd348a2e7f828f36f8d6f0d2cdfd717
+Description: Qt 4 core module translations
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the translations of the QtCore module.
+
+Package: shim
+Version: 0.9+1474479173.6c180c6-1deepin
+Architecture: amd64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 2367
+Priority: optional
+Section: admin
+Filename: pool/main/s/shim/shim_0.9+1474479173.6c180c6-1deepin_amd64.deb
+Size: 434980
+SHA256: 9c1264cc08737304765008b3df015a44d6075ccdebed931e17a6129c60780d2e
+SHA1: 2ee61c84781f50a2babfa4ef6a204e18ba68eab9
+MD5sum: 0ab960b9e096a253cfbae6d27725c5f0
+Description: boot loader to chain-load signed boot loaders under Secure Boot
+ This package provides a minimalist boot loader which allows verifying
+ signatures of other UEFI binaries against either the Secure Boot DB/DBX or
+ against a built-in signature database.  Its purpose is to allow a small,
+ infrequently-changing binary to be signed by the UEFI CA, while allowing
+ an OS distributor to revision their main bootloader independently of the CA.
+Original-Maintainer: Steve Langasek <vorlon@debian.org>
+
+Package: shim-helpers-amd64-signed
+Version: 1+15.4+5
+Architecture: amd64
+Maintainer: Debian EFI team <debian-efi@lists.debian.org>
+Installed-Size: 922
+Depends: shim-unsigned (>= 15.4-5)
+Conflicts: shim (<< 15+1533136590.3beb971-3~)
+Breaks: shim-signed (<< 1.29)
+Replaces: shim (<< 15+1533136590.3beb971-3~), shim-signed (<< 1.29)
+Built-Using: shim (= 15.4-5)
+Priority: optional
+Section: admin
+Filename: pool/main/s/shim-helpers-amd64-signed/shim-helpers-amd64-signed_1+15.4+5_amd64.deb
+Size: 295588
+SHA256: c1dc506b4dd7b3142729696e9bac08ab5ff7e7c60e9ef2ff60c256dbec388eb8
+SHA1: 6a5c004e0832f4ea5d65d0f923d26aa78ec7cbde
+MD5sum: 64fc26106a484680d878ba092567260f
+Description: boot loader to chain-load signed boot loaders (signed by Debian)
+ This package provides a minimalist boot loader which allows verifying
+ signatures of other UEFI binaries against either the Secure Boot DB/DBX or
+ against a built-in signature database.  Its purpose is to allow a small,
+ infrequently-changing binary to be signed by the UEFI CA, while allowing
+ an OS distributor to revision their main bootloader independently of the CA.
+ .
+ This package contains the MOK manager and fall-back manager signed by the
+ Debian UEFI CA to be used by shim-signed.
+
+Package: shim-signed
+Source: shim-signed (1.36.1)
+Version: 1.36.1+15.4-5
+Architecture: amd64
+Maintainer: Debian EFI Team <debian-efi@lists.debian.org>
+Installed-Size: 930
+Depends: shim-signed-common (>= 1.36.1+15.4-5), grub-efi-amd64-bin, shim-helpers-amd64-signed (>= 1+15.4+2), grub2-common (>= 2.02+dfsg1-16)
+Recommends: secureboot-db
+Built-Using: shim (= 15.4-5)
+Multi-Arch: same
+Priority: optional
+Section: utils
+Filename: pool/main/s/shim-signed/shim-signed_1.36.1+15.4-5_amd64.deb
+Size: 316992
+SHA256: a9605d2ff55fe69ea982fc7fe7a601a43a624af18ed2ebfa2bab0b1525f106e8
+SHA1: 8d85569c7158e9b6cb18d6fc81b833ba23970522
+MD5sum: c316524f628e09d718af3563fff068f8
+Description: Secure Boot chain-loading bootloader (Microsoft-signed binary)
+ This package provides a minimalist boot loader which allows verifying
+ signatures of other UEFI binaries against either the Secure Boot DB/DBX or
+ against a built-in signature database.  Its purpose is to allow a small,
+ infrequently-changing binary to be signed by the UEFI CA, while allowing
+ an OS distributor to revision their main bootloader independently of the CA.
+ .
+ This package contains the version of the bootloader binary signed by the
+ Microsoft UEFI CA.
+
+Package: shim-signed-common
+Source: shim-signed (1.36.1)
+Version: 1.36.1+15.4-5
+Architecture: all
+Maintainer: Debian EFI Team <debian-efi@lists.debian.org>
+Installed-Size: 46
+Depends: debconf (>= 0.5) | debconf-2.0, mokutil
+Conflicts: shim-signed (= 1.34.is.1.23+0.9+1474479173.6c180c6-1deepin)
+Breaks: shim-signed (<< 1.34.is.1.23+0.9+1474479173.6c180c6-1deepin)
+Replaces: shim-signed (<< 1.34.is.1.23+0.9+1474479173.6c180c6-1deepin)
+Multi-Arch: foreign
+Priority: optional
+Section: utils
+Filename: pool/main/s/shim-signed/shim-signed-common_1.36.1+15.4-5_all.deb
+Size: 13416
+SHA256: 3df192ede04294a8d193cc8c22bd5f099574b0aa2217ecdffc7cd9d14d8d3c4e
+SHA1: adcaa3128bf2eeef2d1c71a50881f2bd3ad229ad
+MD5sum: 737f637558061fabc2f874982c73700f
+Description: Secure Boot chain-loading bootloader (common helper scripts)
+ This package provides a minimalist boot loader which allows verifying
+ signatures of other UEFI binaries against either the Secure Boot DB/DBX or
+ against a built-in signature database.  Its purpose is to allow a small,
+ infrequently-changing binary to be signed by the UEFI CA, while allowing
+ an OS distributor to revision their main bootloader independently of the CA.
+ .
+ This package contains common helper scripts for all versions of the
+ shim-signed package.
+
+Package: shim-unsigned
+Source: shim
+Version: 15.4-5
+Architecture: amd64
+Maintainer: Debian EFI team <debian-efi@lists.debian.org>
+Installed-Size: 1836
+Conflicts: shim (<< 15+1533136590.3beb971-3~)
+Replaces: shim (<< 15+1533136590.3beb971-3~)
+Priority: optional
+Section: admin
+Filename: pool/main/s/shim/shim-unsigned_15.4-5_amd64.deb
+Size: 429076
+SHA256: 910462c880f046b10641bc9437cc63178c75970fc6415fc815cc50e586bac35d
+SHA1: 16c72c9c417fabaffb6436b52082a7e1fd752fdd
+MD5sum: bf0e6708d761f93ec3bb0a51f274be14
+Description: boot loader to chain-load signed boot loaders under Secure Boot
+ This package provides a minimalist boot loader which allows verifying
+ signatures of other UEFI binaries against either the Secure Boot DB/DBX or
+ against a built-in signature database.  Its purpose is to allow a small,
+ infrequently-changing binary to be signed by the UEFI CA, while allowing
+ an OS distributor to revision their main bootloader independently of the CA.
+
+Package: update-glx
+Source: glx-alternatives
+Version: 1.2.0-1-1+eagle
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 28
+Pre-Depends: dpkg (>= 1.17.21)
+Multi-Arch: foreign
+Priority: optional
+Section: contrib/x11
+Filename: pool/main/g/glx-alternatives/update-glx_1.2.0-1-1+eagle_amd64.deb
+Size: 5004
+SHA256: 49ae31fee37044dbc37c81af84f8224536326af77b38a8bbc1cf76de8a2fd92d
+SHA1: 1d907b651f5d062174dca83d3fce6a85690b4334
+MD5sum: 5b5681352b7f5a4c45865d4ac16e8f94
+Description: utility for switching the GLX implementation
+ In setups with several GLX providers (e.g. the free MESA implementation and
+ proprietary graphics hardware vendor implementations) this utility
+ allows one to switch between the different implementations.
+ .
+ Use 'update-glx --config glx' to select an implementation.
+ .
+ In addition to updating the alternatives, this will trigger further actions
+ needed to complete the switch.
+
+Package: xserver-xorg-video-nvidia
+Source: nvidia-graphics-drivers
+Version: 510.73.08-1
+Architecture: amd64
+Maintainer: Debian NVIDIA Maintainers <pkg-nvidia-devel@lists.alioth.debian.org>
+Installed-Size: 18901
+Pre-Depends: nvidia-installer-cleanup, nvidia-legacy-check (>= 495)
+Depends: nvidia-alternative (= 510.73.08-1), nvidia-support, xorg-video-abi-25 | xorg-video-abi-24 | xorg-video-abi-23 | xorg-video-abi-20 | xorg-video-abi-19 | xorg-video-abi-18 | xorg-video-abi-15 | xorg-video-abi-14 | xorg-video-abi-13 | xorg-video-abi-12 | xorg-video-abi-11 | xorg-video-abi-10 | xorg-video-abi-8 | xorg-video-abi-6.0, xserver-xorg-core (<< 2:21.99), libc6 (>= 2.7), libnvidia-glcore (= 510.73.08-1)
+Recommends: nvidia-driver (>= 510.73.08), nvidia-vdpau-driver (>= 510.73.08), nvidia-kernel-dkms (= 510.73.08-1) | nvidia-kernel-510.73.08, nvidia-settings (>= 510)
+Suggests: nvidia-kernel-dkms (>= 510.73.08) | nvidia-kernel-source (>= 510.73.08)
+Provides: xorg-driver-video, xserver-xorg-video-nvidia-any
+Homepage: https://www.nvidia.com
+Priority: optional
+Section: non-free/x11
+Filename: pool/main/n/nvidia-graphics-drivers/xserver-xorg-video-nvidia_510.73.08-1_amd64.deb
+Size: 2281388
+SHA256: dc5a51454f23fda54125bb95a2ba5e301b4e6ab881527adb68ea0a4219da79ed
+SHA1: 3552a593dd9ba671a621368a211cce85dc7eb529
+MD5sum: 81d68ada7fd88a0e2b7223856acd096b
+Description: NVIDIA binary Xorg driver
+ The NVIDIA binary driver provides optimized hardware acceleration of
+ OpenGL/GLX/EGL/GLES applications via a direct-rendering X Server
+ for graphics cards using NVIDIA chip sets.
+ .
+ Please see the nvidia-kernel-dkms or
+ nvidia-kernel-source packages
+ for building the kernel module required by this package.
+ This will provide nvidia-kernel-510.73.08.
+ .
+ This version only supports GeForce, NVS, Quadro, RTX, Tesla, ... GPUs based on
+ the Maxwell, Pascal, Volta, Turing, Ampere or newer architectures.
+ Look at the legacy driver or Tesla driver packages for older cards.
+ .
+ See /usr/share/doc/nvidia-driver/README.txt.gz
+ for a complete list of supported GPUs and PCI IDs.
+
